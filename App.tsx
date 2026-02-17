@@ -13,6 +13,8 @@ import Services from './components/Services';
 import Innovations from './components/Innovations';
 import AIServices from './components/AIServices';
 import ElectricalServices from './components/ElectricalServices';
+import Products from './components/Products';
+import TrizServices from './components/TrizServices';
 import {
   LayoutGrid,
   ArrowRight,
@@ -833,9 +835,11 @@ const App: React.FC = () => {
             <Route path="/modules" element={<ModulesCatalog />} />
             <Route path="/services" element={<Services />} />
             <Route path="/services/electrical" element={<ElectricalServices />} />
+            <Route path="/services/triz" element={<TrizServices />} />
             <Route path="/innovations" element={<Innovations />} />
             <Route path="/audit" element={<AuditPlan />} />
             <Route path="/ai-services" element={<AIServices />} />
+            <Route path="/products" element={<Products />} />
           </Routes>
         </main>
         <Footer />

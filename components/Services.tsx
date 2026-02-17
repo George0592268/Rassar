@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ArrowLeft, Zap, Scale, Settings, Activity, Brain, ArrowRight, Lightbulb, ClipboardList } from 'lucide-react';
+import { ArrowLeft, Zap, Scale, Settings, Activity, Brain, ArrowRight, Lightbulb, ClipboardList, FlaskConical } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const Services: React.FC = () => {
@@ -65,7 +65,6 @@ const Services: React.FC = () => {
             </div>
             <h3 className="text-2xl font-bold text-white mb-3 flex items-center gap-2">
               Industrial AI
-              <span className="text-[10px] bg-purple-600 text-white px-2 py-0.5 rounded-full">New</span>
             </h3>
             <p className="text-industrial-400 mb-6 leading-relaxed">
               Цифровая трансформация. Предиктивная диагностика, Computer Vision для контроля качества, оптимизация процессов через ML.
@@ -97,6 +96,27 @@ const Services: React.FC = () => {
             </div>
           </div>
 
+          {/* Card: TRIZ & DoE (New) */}
+          <div 
+            onClick={() => navigate('/services/triz')}
+            className="group bg-industrial-900 border border-industrial-800 p-8 rounded-2xl hover:border-cyan-500/50 transition-all cursor-pointer relative overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
+              <FlaskConical size={100} />
+            </div>
+            <div className="w-14 h-14 bg-cyan-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <FlaskConical size={32} className="text-cyan-500" />
+            </div>
+            <h3 className="text-2xl font-bold text-white mb-3">ТРИЗ + DoE Оптимизация</h3>
+            <p className="text-industrial-400 mb-6 leading-relaxed">
+              Математическое планирование эксперимента для систем типа "Черный ящик". Разрешение противоречий в составах смесей и режимах горения.
+            </p>
+            <div className="flex items-center text-cyan-500 font-medium text-sm mt-auto">
+              <span>Подробнее</span>
+              <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+
           {/* Card 4: Innovations */}
           <div 
             onClick={() => navigate('/innovations')}
@@ -110,7 +130,7 @@ const Services: React.FC = () => {
             </div>
             <h3 className="text-2xl font-bold text-white mb-3">R&D и Инновации</h3>
             <p className="text-industrial-400 mb-6 leading-relaxed">
-              Собственные разработки: ИТН, композитные материалы, уникальные редукторы. Решения ТРИЗ для промышленности.
+              Собственные разработки: ИТН, композитные материалы, уникальные редукторы. Решения для нестандартных задач.
             </p>
             <div className="flex items-center text-emerald-500 font-medium text-sm mt-auto">
               <span>Подробнее</span>
@@ -132,23 +152,6 @@ const Services: React.FC = () => {
             </p>
             <div className="text-industrial-500 text-sm mt-auto italic">
               В составе комплексного аудита
-            </div>
-          </div>
-
-          {/* Card 6: Energy Supply (Info Only) */}
-          <div className="group bg-industrial-900 border border-industrial-800 p-8 rounded-2xl hover:border-orange-500/50 transition-all relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
-              <Zap size={100} />
-            </div>
-            <div className="w-14 h-14 bg-orange-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-              <Zap size={32} className="text-orange-500" />
-            </div>
-            <h3 className="text-2xl font-bold text-white mb-3">Энергоснабжение</h3>
-            <p className="text-industrial-400 mb-6 leading-relaxed">
-              Поставка энергии от собственной сбытовой компании. Выкуп излишков генерации. Оптимизация схем.
-            </p>
-            <div className="text-industrial-500 text-sm mt-auto italic">
-              Индивидуальное предложение
             </div>
           </div>
 

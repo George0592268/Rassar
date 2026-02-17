@@ -20,7 +20,7 @@ const Header: React.FC = () => {
     setMobileMenuOpen(false);
     
     // Check for route-based navigation first
-    if (target === 'services' || target === 'innovations' || target === 'audit') {
+    if (target === 'services' || target === 'innovations' || target === 'audit' || target === 'products') {
       navigate(`/${target}`);
       window.scrollTo(0, 0);
       return;
@@ -41,6 +41,7 @@ const Header: React.FC = () => {
 
   const navItems = [
     { name: 'Услуги', target: 'services' },
+    { name: 'Продукция', target: 'products' },
     { name: 'Инновации', target: 'innovations' },
     { name: 'Технологии', target: 'technology' },
     { name: 'Производство', target: 'production' },
