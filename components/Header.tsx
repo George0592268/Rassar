@@ -1,11 +1,12 @@
 
 import React, { useState, useEffect } from 'react';
-import { Phone, Menu, X } from 'lucide-react';
+import { Phone, Menu, X, Sun, Moon } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isDark, setIsDark] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -13,20 +14,39 @@ const Header: React.FC = () => {
       setScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
+
+    // Initial Theme Check
+    if (document.documentElement.classList.contains('dark')) {
+      setIsDark(true);
+    } else {
+      setIsDark(false);
+    }
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const toggleTheme = () => {
+    const html = document.documentElement;
+    if (isDark) {
+      html.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+      setIsDark(false);
+    } else {
+      html.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+      setIsDark(true);
+    }
+  };
 
   const scrollToSection = (target: string) => {
     setMobileMenuOpen(false);
     
-    // Check for route-based navigation first
     if (target === 'services' || target === 'innovations' || target === 'audit' || target === 'products') {
       navigate(`/${target}`);
       window.scrollTo(0, 0);
       return;
     }
 
-    // Handle home page scrolling
     navigate('/');
     setTimeout(() => {
       const element = document.getElementById(target);
@@ -53,7 +73,7 @@ const Header: React.FC = () => {
     <header
       className={`fixed w-full z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-industrial-900/95 backdrop-blur-md border-b border-industrial-700 shadow-lg py-3'
+          ? 'bg-white/90 dark:bg-industrial-900/95 backdrop-blur-md border-b border-slate-200 dark:border-industrial-700 shadow-lg py-3'
           : 'bg-transparent py-5'
       }`}
     >
@@ -67,10 +87,10 @@ const Header: React.FC = () => {
             <span className="font-mono text-white font-bold text-xl">R</span>
           </div>
           <div className="flex flex-col">
-            <span className="text-xl font-bold tracking-tight text-white leading-none">
+            <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white leading-none transition-colors">
               РАССАР
             </span>
-            <span className="text-[10px] uppercase tracking-widest text-industrial-400 group-hover:text-industrial-accent transition-colors">
+            <span className="text-[10px] uppercase tracking-widest text-slate-500 dark:text-industrial-400 group-hover:text-industrial-accent transition-colors">
               ЭкоФорвард Групп
             </span>
           </div>
@@ -82,11 +102,22 @@ const Header: React.FC = () => {
             <button
               key={item.name}
               onClick={() => scrollToSection(item.target)}
-              className="text-sm font-medium text-industrial-300 hover:text-white hover:border-b-2 border-industrial-accent transition-all py-1"
+              className="text-sm font-medium text-slate-600 dark:text-industrial-300 hover:text-slate-900 dark:hover:text-white hover:border-b-2 border-industrial-accent transition-all py-1"
             >
               {item.name}
             </button>
           ))}
+          
+          <div className="h-6 w-px bg-slate-300 dark:bg-industrial-700 mx-2"></div>
+
+          <button 
+            onClick={toggleTheme}
+            className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-industrial-800 text-slate-600 dark:text-industrial-300 transition-colors"
+            aria-label="Toggle Theme"
+          >
+            {isDark ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
+
           <a
             href="tel:+79879176580"
             className="flex items-center gap-2 bg-industrial-accent hover:bg-sky-400 text-white px-5 py-2 rounded-md font-medium transition-colors shadow-[0_0_15px_rgba(14,165,233,0.3)] animate-pulse-slow"
@@ -96,22 +127,31 @@ const Header: React.FC = () => {
           </a>
         </nav>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="lg:hidden text-white"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        {/* Mobile Menu Button & Theme Toggle */}
+        <div className="lg:hidden flex items-center gap-4">
+          <button 
+            onClick={toggleTheme}
+            className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-industrial-800 text-slate-600 dark:text-white transition-colors"
+          >
+            {isDark ? <Sun size={24} /> : <Moon size={24} />}
+          </button>
+          
+          <button
+            className="text-slate-900 dark:text-white"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full bg-industrial-900 border-b border-industrial-700 p-4 flex flex-col gap-4 shadow-2xl">
+        <div className="lg:hidden absolute top-full left-0 w-full bg-white dark:bg-industrial-900 border-b border-slate-200 dark:border-industrial-700 p-4 flex flex-col gap-4 shadow-2xl transition-colors">
           {navItems.map((item) => (
             <button
               key={item.name}
-              className="text-lg font-medium text-industrial-200 py-2 border-b border-industrial-800 text-left"
+              className="text-lg font-medium text-slate-700 dark:text-industrial-200 py-2 border-b border-slate-100 dark:border-industrial-800 text-left"
               onClick={() => scrollToSection(item.target)}
             >
               {item.name}

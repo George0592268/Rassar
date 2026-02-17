@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import {
   ResponsiveContainer,
@@ -284,47 +285,50 @@ const Calculator: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="bg-industrial-800 p-6 rounded-xl border border-industrial-700 h-80">
-                  <h4 className="text-white font-bold mb-2">
+                {/* Исправленная структура контейнера графика */}
+                <div className="bg-industrial-800 p-6 rounded-xl border border-industrial-700 h-80 flex flex-col">
+                  <h4 className="text-white font-bold mb-2 shrink-0">
                     Накопительный денежный поток (5 лет)
                   </h4>
-                  <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart
-                      data={result.projectionData}
-                      margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
-                    >
-                      <defs>
-                        <linearGradient id="colorProfit" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
-                          <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
-                        </linearGradient>
-                      </defs>
-                      <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
-                      <XAxis dataKey="year" stroke="#64748b" fontSize={12} />
-                      <YAxis stroke="#64748b" fontSize={12} tickFormatter={(val) => `${val}к`} />
-                      <Tooltip
-                        contentStyle={{
-                          backgroundColor: '#0f172a',
-                          borderColor: '#334155',
-                          color: '#fff',
-                        }}
-                        itemStyle={{ color: '#fff' }}
-                        formatter={(value: number) => [
-                          `${value.toLocaleString()} тыс. ₽`,
-                          'Сальдо',
-                        ]}
-                      />
-                      <ReferenceLine y={0} stroke="#94a3b8" />
-                      <Area
-                        type="monotone"
-                        dataKey="cashflow"
-                        stroke="#10b981"
-                        fillOpacity={1}
-                        fill="url(#colorProfit)"
-                        strokeWidth={2}
-                      />
-                    </AreaChart>
-                  </ResponsiveContainer>
+                  <div className="flex-grow min-h-0">
+                    <ResponsiveContainer width="100%" height="100%" minWidth={0}>
+                      <AreaChart
+                        data={result.projectionData}
+                        margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+                      >
+                        <defs>
+                          <linearGradient id="colorProfit" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
+                            <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
+                          </linearGradient>
+                        </defs>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
+                        <XAxis dataKey="year" stroke="#64748b" fontSize={12} />
+                        <YAxis stroke="#64748b" fontSize={12} tickFormatter={(val) => `${val}к`} />
+                        <Tooltip
+                          contentStyle={{
+                            backgroundColor: '#0f172a',
+                            borderColor: '#334155',
+                            color: '#fff',
+                          }}
+                          itemStyle={{ color: '#fff' }}
+                          formatter={(value: number) => [
+                            `${value.toLocaleString()} тыс. ₽`,
+                            'Сальдо',
+                          ]}
+                        />
+                        <ReferenceLine y={0} stroke="#94a3b8" />
+                        <Area
+                          type="monotone"
+                          dataKey="cashflow"
+                          stroke="#10b981"
+                          fillOpacity={1}
+                          fill="url(#colorProfit)"
+                          strokeWidth={2}
+                        />
+                      </AreaChart>
+                    </ResponsiveContainer>
+                  </div>
                 </div>
 
                 <div className="flex justify-center mt-6">

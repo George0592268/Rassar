@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ResponsiveContainer, ComposedChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import { Cpu, Server, Activity } from 'lucide-react';
@@ -89,7 +90,7 @@ const DigitalTwin: React.FC = () => {
                   <div className="absolute top-2 left-4 text-[10px] text-industrial-500">
                     Двигатель №4 (Компрессор) - Ток / Температура
                   </div>
-                  <ResponsiveContainer width="100%" height="100%">
+                  <ResponsiveContainer width="100%" height="100%" minWidth={0}>
                     <ComposedChart data={LIVE_DATA}>
                       <defs>
                         <linearGradient id="colorCurrent" x1="0" y1="0" x2="0" y2="1">

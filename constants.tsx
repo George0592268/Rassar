@@ -1,3 +1,4 @@
+
 import {
   Activity,
   Shield,
@@ -64,6 +65,17 @@ export const MODULES_DATA: ModuleItem[] = [
     impact: ["Снижение реактивной мощности", "Снижение пусковых токов в 3 раза", "Холодные двигатели"],
   },
   {
+    id: "d2.1",
+    code: "D2.1",
+    name: "IIoT Шлюз + LoRaWAN",
+    category: ModuleCategory.DIGITAL,
+    level: ModuleLevel.BASIC,
+    costRange: "0.5 - 2.0 млн ₽",
+    paybackPeriod: "Инфраструктура",
+    description: "Развертывание сети сбора данных. Беспроводные датчики вибрации, температуры и тока. Передача данных в SCADA.",
+    impact: ["Сбор данных с удаленных объектов", "Отсутствие кабельных трасс"],
+  },
+  {
     id: "e3.4",
     code: "E3.4",
     name: "Подавление гармоник (Data Centers)",
@@ -99,7 +111,7 @@ export const MODULES_DATA: ModuleItem[] = [
   {
     id: "s2.1",
     code: "S2.1",
-    name: "AI-видеоаналитика",
+    name: "AI-видеоаналитика (Sentinel)",
     category: ModuleCategory.SAFETY,
     level: ModuleLevel.STANDARD,
     costRange: "2 - 6 млн ₽",
